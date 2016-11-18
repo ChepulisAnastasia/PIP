@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c37b428ffd7d499289c82c6dbc015a83" Name="Diagram1">
+        <EntityTypeShape EntityType="LibraryDatabaseModel.Book" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryDatabaseModel.Extradition" Width="1.5" PointX="5.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryDatabaseModel.Instance" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryDatabaseModel.Knowledge" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryDatabaseModel.Reader" Width="1.5" PointX="5.375" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="LibraryDatabaseModel.FK__Instances__ISBN__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryDatabaseModel.FK__Extraditi__insta__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryDatabaseModel.FK__Extraditi__reade__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryDatabaseModel.Catalogs" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BooksLibrary.Models.AspNetUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список зарегистрированных пользователей</h2>
+<div class="row">
+    <div class="col-md-4 pull-right books-filter">
+        <div class="input-group">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="filter-title">@Html.DisplayNameFor(model => model.UserName)</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.Email)</a></li>
+                    <li id="1"><a href="#">@Html.DisplayNameFor(model => model.UserName)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th> @Html.DisplayNameFor(model => model.Email) </th>
+        <th> @Html.DisplayNameFor(model => model.UserName) </th>
+        <th> @Html.DisplayNameFor(model => model.AspNetRoles.First().Name) </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr id="../Users/Edit/@item.Id">
+        <td> @Html.DisplayFor(modelItem => item.Email) </td>
+        <td> @Html.DisplayFor(modelItem => item.UserName) </td>
+        <td> @Html.DisplayFor(modelItem => item.AspNetRoles.First().Name)
+        </td>
+        <td>
+            <a href="/Users/Edit/@item.Id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
+            <a href="/Users/Details/@item.Id" class="btn-icon-details"><i class="fa fa-info fa-lg"></i></a>
+            <a onclick="showDelete('/Users/Delete/@item.Id');" class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></a>
+        </td>
+    </tr>
+}
+
+</table>

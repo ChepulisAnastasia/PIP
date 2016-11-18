@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BooksLibrary.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список книг библиотеки</h2>
+    <div class="row">
+    @if (User.IsInRole("Manager"))
+    {
+        <div class="col-md-8">
+            <a href="/Books/Create" class="btn-icon-create" title="Добавить новую книгу">
+                <i class="fa fa-file fa-2x"></i>
+            </a>
+        </div>
+    }
+
+        <div class="col-md-4 pull-right books-filter">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="filter-title">@Html.DisplayNameFor(model => model.name)</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li id="0"><a href="#">@Html.DisplayNameFor(model => model.author)</a></li>
+                        <li id="1"><a href="#">@Html.DisplayNameFor(model => model.name)</a></li>
+                        <li id="2"><a href="#">@Html.DisplayNameFor(model => model.Knowledges)</a></li>
+                        <li id="3"><a href="#">@Html.DisplayNameFor(model => model.year)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<table class="table">
+    <tr>
+        <th> @Html.DisplayNameFor(model => model.author) </th>
+        <th> @Html.DisplayNameFor(model => model.name) </th>
+        <th> @Html.DisplayNameFor(model => model.Knowledges) </th>
+        <th> @Html.DisplayNameFor(model => model.year) </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="@item.ISBN">
+            <td> @Html.DisplayFor(modelItem => item.author) </td>
+            <td> @Html.DisplayFor(modelItem => item.name) </td>
+            <td>
+                @{
+                    var str = item.Knowledges.Aggregate("", (current, knoweledge) => current + (knoweledge.knowledge1 + ", "));
+                    if (str.Length > 2)
+                    {
+                        str = str.Remove(str.Length - 2);
+                    }
+                    @str
+                }
+            </td>
+            <td> @Html.DisplayFor(modelItem => item.year) </td>
+            <td>
+                @if (User.IsInRole("Manager"))
+                {
+                    <a href="/Books/Edit/@item.ISBN" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
+                }
+                <a href="/Books/Details/@item.ISBN" class="btn-icon-details"><i class="fa fa-info fa-lg"></i></a>
+                @if (User.IsInRole("Manager"))
+                {
+                    <a class="btn-icon-delete" onclick="showDelete('../Books/Delete/@item.ISBN');"><i class="fa fa-times fa-lg"></i></a>
+                }
+            </td>
+        </tr>
+    }
+</table>
+

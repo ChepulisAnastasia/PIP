@@ -1,0 +1,57 @@
+﻿@model BooksLibrary.Models.Book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детали о книге « @Html.DisplayFor(model => model.name) »</h2>
+
+<div class="table">
+    <h4>
+        Количество экземпляров:  @Html.DisplayFor(model => model.number)
+        @if (User.IsInRole("Manager"))
+        {
+            <h5>
+                <a href="/Books/Edit/@Model.ISBN" class="btn-icon-edit" title="Редактировать">
+                    <i class="fa fa-edit fa-3x"></i>
+                </a>
+            </h5>
+        }
+    </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt> @Html.DisplayNameFor(model => model.ISBN) </dt>
+        <dd> @Html.DisplayFor(model => model.ISBN) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.author) </dt>
+        <dd> @Html.DisplayFor(model => model.author) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.publication_type) </dt>
+        <dd> @Html.DisplayFor(model => model.publication_type)  </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.tome) </dt>
+        <dd> @Html.DisplayFor(model => model.tome) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.compiler) </dt>
+        <dd> @Html.DisplayFor(model => model.compiler) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.language) </dt>
+        <dd> @Html.DisplayFor(model => model.language) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.translator) </dt>
+        <dd> @Html.DisplayFor(model => model.translator) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.place_publication) </dt>
+        <dd> @Html.DisplayFor(model => model.place_publication) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.publishing) </dt>
+        <dd> @Html.DisplayFor(model => model.publishing) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.year) </dt>
+        <dd> @Html.DisplayFor(model => model.year) </dd>
+
+        <dt> @Html.DisplayNameFor(model => model.price) </dt>
+        <dd> @Html.DisplayFor(model => model.price) </dd>
+    </dl>
+    <a href="/Books/Index" class="btn-icon-details" title="Вернуться назад"><i class="fa fa-arrow-left fa-3x"></i></a>
+</div>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BooksLibrary.Models.Extradition>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список выданных книг</h2>
+<div class="row">
+    <div class="col-md-8">
+        <a href="/Extraditions/Create" class="btn-icon-create" title="Выдать книгу">
+            <i class="fa fa-file fa-2x"></i>
+        </a>
+    </div>
+
+    <div class="col-md-4 pull-right books-filter">
+        <div class="input-group">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="filter-title">@Html.DisplayNameFor(model => model.Instance.Book.name)</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.Instance.ISBN)</a></li>
+                    <li id="1"><a href="#">@Html.DisplayNameFor(model => model.Instance.Book.name)</a></li>
+                    <li id="2"><a href="#">@Html.DisplayNameFor(model => model.Reader.last_name)</a></li>
+                    <li id="3"><a href="#">@Html.DisplayNameFor(model => model.Reader.name)</a></li>
+                    <li id="4"><a href="#">@Html.DisplayNameFor(model => model.date_extradition)</a></li>
+                    <li id="5"><a href="#">@Html.DisplayNameFor(model => model.return_date)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <table class="table">
+        <tr>
+            <th> @Html.DisplayNameFor(model => model.Instance.ISBN) </th>
+            <th> @Html.DisplayNameFor(model => model.Instance.Book.name) </th>
+            <th> @Html.DisplayNameFor(model => model.Reader.last_name) </th>
+            <th> @Html.DisplayNameFor(model => model.Reader.name) </th>
+            <th> @Html.DisplayNameFor(model => model.date_extradition) </th>
+            <th> @Html.DisplayNameFor(model => model.return_date) </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="../Instances/Edit/@item.id">
+                <td> @Html.DisplayFor(modelItem => item.Instance.ISBN) </td>
+                <td> @Html.DisplayFor(modelItem => item.Instance.Book.name) </td>
+                <td> @Html.DisplayFor(modelItem => item.Reader.last_name) </td>
+                <td> @Html.DisplayFor(modelItem => item.Reader.name) </td>
+                <td> @Html.DisplayFor(modelItem => item.date_extradition) </td>
+                <td> @Html.DisplayFor(modelItem => item.return_date) </td>
+                <td>
+                    <a href="/Extraditions/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
+                    <a onclick="showDelete('/Extraditions/Delete/@item.id');" class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></a>
+                </td>
+            </tr>
+        }
+    </table>

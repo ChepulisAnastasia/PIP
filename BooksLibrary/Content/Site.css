@@ -1,0 +1,118 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background: #d8a78a url(/img/5.jpg) no-repeat;
+    background-size: cover;
+    color: #e5e0e0;
+}
+
+
+h2 {
+    text-align: center;
+}
+h4 {
+    padding: 20px 0 0 20px ;
+}
+h5 {
+    text-align: right;
+    margin: -30px 20px 0 0 
+}
+.user-edit a {
+    margin-left:10px
+}
+.user-edit dt {
+    min-width: 400px;
+    margin-right: 20px
+}
+
+.navbar-inverse {
+    background-color: rgb(51, 23, 9);
+    border-color: rgb(51, 23, 9);
+}
+
+table tr td a {
+    margin: 6px;
+}
+
+tr[id]:hover {
+	cursor: pointer;
+	background: rgba(141, 217, 54, 0.8);
+}
+
+/* Icons */
+.btn-icon div {display: inline-block}          
+.btn-icon-create {
+    color: #8dd936 !important;
+    transition: .5s all;
+}
+.btn-icon-create:hover {
+    color: #2b8125 !important;
+}
+
+.btn-icon-edit {
+    color: #b4ba1a !important;
+    transition: .5s all;
+
+}
+.btn-icon-edit:hover {
+    color: #7f8226 !important;
+}
+
+.btn-icon-details {
+    color: #2856c6 !important;
+    transition: .5s all;
+}
+.btn-icon-details:hover {
+    color: #24479b !important;
+}
+
+.btn-icon-delete {
+    color: #cf202d !important;
+    transition: .5s all;
+}
+.btn-icon-delete:hover {
+    color: #961a24 !important;
+}
+
+/* Table */
+.table {
+	border: none;
+	border-collapse: collapse;
+	margin: auto;
+    padding-top: 10px;
+    padding: 10px;
+	position: relative;
+    color: #e5e0e0;
+    background-color: rgba(51, 23, 9, .6);
+}
+.table tr:nth-child(2n+1), .details tr:nth-child(2n+1) {
+	background-color: rgba(98, 44, 17, .6);
+}
+
+.table th {
+	background-color: rgba(49, 29, 19, .3);
+} 
+
+tr[id]:hover {
+	cursor: pointer;
+	background: rgba(151, 241, 49,0.1);
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+/* filter input */
+.row {
+    margin-bottom: 10px;
+}
+
+.books-filter .dropdown-menu { 
+    background: rgb(196, 254, 130);
+}
+
+.books-filter button { 
+    background: rgb(141, 217, 54);
+}

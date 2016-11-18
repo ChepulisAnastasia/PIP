@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BooksLibrary.Models.Knowledge>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список областей знаний</h2>
+<div class="row">
+    <div class="col-md-8">
+        <a href="/Knowledges/Create" class="btn-icon-create" title="Добавить область знаний">
+            <i class="fa fa-file fa-2x"></i>
+        </a>
+    </div>
+
+    <div class="col-md-4 pull-right books-filter">
+        <div class="input-group">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="filter-title">@Html.DisplayNameFor(model => model.knowledge1)</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.knowledge1)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.knowledge1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr id="../Knowledges/Edit/@item.id">
+        <td>
+            @Html.DisplayFor(modelItem => item.knowledge1)
+        </td>
+        <td>
+            <a href="/Knowledges/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
+            <a onclick="showDelete('/Knowledges/Delete/@item.id');" class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></a>
+        </td>
+    </tr>
+}
+
+</table>

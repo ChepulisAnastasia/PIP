@@ -1,0 +1,61 @@
+﻿@model IEnumerable<BooksLibrary.Models.Reader>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список всех читателей</h2>
+<div class="row">
+    <div class="col-md-8">
+        <a href="/Readers/Create" class="btn-icon-create" title="Добавить нового читателя">
+            <i class="fa fa-file fa-2x"></i>
+        </a>
+    </div>
+
+    <div class="col-md-4 pull-right books-filter">
+        <div class="input-group">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="filter-title">@Html.DisplayNameFor(model => model.last_name)</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.last_name)</a></li>
+                    <li id="1"><a href="#">@Html.DisplayNameFor(model => model.name)</a></li>
+                    <li id="2"><a href="#">@Html.DisplayNameFor(model => model.middle_name)</a></li>
+                    <li id="3"><a href="#">@Html.DisplayNameFor(model => model.age)</a></li>
+                    <li id="4"><a href="#">@Html.DisplayNameFor(model => model.address)</a></li>
+                    <li id="5"><a href="#">@Html.DisplayNameFor(model => model.phone)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th> @Html.DisplayNameFor(model => model.last_name) </th>
+        <th> @Html.DisplayNameFor(model => model.name) </th>
+        <th> @Html.DisplayNameFor(model => model.middle_name) </th>
+        <th> @Html.DisplayNameFor(model => model.age) </th>
+        <th> @Html.DisplayNameFor(model => model.address) </th>
+        <th> @Html.DisplayNameFor(model => model.phone) </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr id="../Readers/Edit/@item.id">
+        <td> @Html.DisplayFor(modelItem => item.last_name) </td>
+        <td> @Html.DisplayFor(modelItem => item.name) </td>
+        <td> @Html.DisplayFor(modelItem => item.middle_name) </td>
+        <td> @Html.DisplayFor(modelItem => item.age) </td>
+        <td> @Html.DisplayFor(modelItem => item.address) </td>
+        <td> @Html.DisplayFor(modelItem => item.phone) </td>
+        <td>
+            <a href="/Readers/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
+            <a onclick="showDelete('/Readers/Delete/@item.id');" class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></a>
+        </td>
+    </tr>
+}
+</table>
