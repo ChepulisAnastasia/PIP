@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BooksLibrary.Models;
 
 namespace BooksLibrary.Controllers
 {
     [Authorize]
+    [Filters.ActionFilter]
+    [Filters.ExceptionFilter]
     public class BooksController : Controller
     {
         private LibraryDatabaseEntities db = new LibraryDatabaseEntities();
@@ -26,12 +24,12 @@ namespace BooksLibrary.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new Exception("400");
             }
             Book book = db.Books.Find(id);
             if (book == null)
             {
-                return HttpNotFound();
+                throw new Exception("404");
             }
             return View(book);
         }
@@ -67,12 +65,12 @@ namespace BooksLibrary.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new Exception("400");
             }
             Book book = db.Books.Find(id);
             if (book == null)
             {
-                return HttpNotFound();
+                throw new Exception("404");
             }
             return View(book);
         }
