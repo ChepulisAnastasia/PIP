@@ -11,6 +11,8 @@ using BooksLibrary.Models;
 namespace BooksLibrary.Controllers
 {
     [Authorize]
+    [Filters.ActionFilter]
+    [Filters.ExceptionFilter]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

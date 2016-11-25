@@ -12,6 +12,8 @@ namespace BooksLibrary.Controllers
 {
     [Authorize]
     [Authorize(Roles = "Manager")]
+    [Filters.ActionFilter]
+    [Filters.ExceptionFilter]
     public class InstancesController : Controller
     {
         private LibraryDatabaseEntities db = new LibraryDatabaseEntities();

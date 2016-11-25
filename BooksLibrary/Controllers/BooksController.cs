@@ -98,10 +98,18 @@ namespace BooksLibrary.Controllers
         [Authorize(Roles = "Manager")]
         public ActionResult DeleteConfirmed(string id)
         {
-            Book book = db.Books.Find(id);
-            db.Books.Remove(book);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Book book = db.Books.Find(id);
+                db.Books.Remove(book);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("403");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)
