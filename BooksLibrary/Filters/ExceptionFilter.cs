@@ -19,6 +19,12 @@ namespace BooksLibrary.Filters
                         filterContext.ExceptionHandled = true;
                     break;
                 }
+                case "403":
+                {
+                        filterContext.Result = new RedirectResult("~/Error/Forbidden");
+                        filterContext.ExceptionHandled = true;
+                        break;
+                }
                 case "404":
                 {
                         filterContext.Result = new RedirectResult("~/Error/NotFound");

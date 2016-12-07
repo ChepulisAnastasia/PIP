@@ -12,6 +12,8 @@ namespace BooksLibrary.Controllers
 {
     [Authorize]
     [Authorize(Roles = "Admin")]
+    [Filters.ActionFilter]
+    [Filters.ExceptionFilter]
     public class UsersController : Controller
     {
         private DefaultConnectionEntities db = new DefaultConnectionEntities();

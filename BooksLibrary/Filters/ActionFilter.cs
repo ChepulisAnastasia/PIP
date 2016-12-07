@@ -10,6 +10,10 @@ namespace BooksLibrary.Filters
 {
     public class ActionFilter : FilterAttribute, IActionFilter, IResultFilter
     {
+        /// <summary>
+        /// Обращение к методу
+        /// </summary>
+        /// <param name="filterContext"></param>
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
             using (StreamWriter file = File.AppendText(@"D:\log.txt"))
@@ -27,20 +31,34 @@ namespace BooksLibrary.Filters
             }
         }
 
+        /// <summary>
+        /// Завершение отработки метода
+        /// </summary>
+        /// <param name="filterContext"></param>
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
             using (StreamWriter file = File.AppendText(@"D:\log.txt"))
             {
                 file.WriteLine($"Action name: {filterContext.ActionDescriptor.ActionName} (end time: {DateTime.Now.ToString("HH.mm.ss.ffffff")})");
-                file.WriteLine($"Render page start: {DateTime.Now.ToString("HH.mm.ss.ffffff")})");
             }
         }
 
+        /// <summary>
+        /// Начало рендера страницы
+        /// </summary>
+        /// <param name="filterContext"></param>
         public void OnResultExecuting(ResultExecutingContext filterContext)
         {
-            //throw new NotImplementedException();
+            using (StreamWriter file = File.AppendText(@"D:\log.txt"))
+            {
+                file.WriteLine($"Render page start: {DateTime.Now.ToString("HH.mm.ss.ffffff")}");
+            }
         }
 
+        /// <summary>
+        /// Окончание рендера страницы
+        /// </summary>
+        /// <param name="filterContext"></param>
         public void OnResultExecuted(ResultExecutedContext filterContext)
         {
             using (StreamWriter file = File.AppendText(@"D:\log.txt"))

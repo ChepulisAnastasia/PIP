@@ -437,6 +437,7 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\NullParameter.cshtml" />
+    <Content Include="Views\Error\Forbidden.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
