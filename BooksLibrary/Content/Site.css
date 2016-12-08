@@ -1,14 +1,18 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    background: #d8a78a url(/img/5.jpg) no-repeat;
+    padding: 50px;
+    background: #462715 url(/img/5.jpg) no-repeat;
     background-size: cover;
-    color: #e5e0e0;
+    color: #e8c9b4;
+}
+
+.main-container {
+	width: 100%;
 }
 
 
 h2 {
     text-align: center;
+    padding: 20px;
 }
 h4 {
     padding: 20px 0 0 20px ;
@@ -106,7 +110,7 @@ tr[id]:hover {
 
 /* filter input */
 .row {
-    margin-bottom: 10px;
+    margin: 0 12px 10px 12px;
 }
 
 .books-filter .dropdown-menu { 

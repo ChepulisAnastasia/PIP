@@ -1,64 +1,68 @@
-﻿@model IEnumerable<BooksLibrary.Models.Book>
-
+﻿@model PagedList.IPagedList<BooksLibrary.Models.Book>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Index";
 }
 
-<link rel="stylesheet" type="text/css" href="~/Content/CardBlock.css" />
-<h2>Список книг библиотеки</h2>
+<div class="main-container">
+    <h2>Список книг библиотеки</h2>
     <div class="row">
-    @if (User.IsInRole("Manager"))
-    {
-        <div class="col-md-8">
-            <a href="/Books/Create" class="btn-icon-create" title="Добавить новую книгу">
-                <i class="fa fa-file fa-2x"></i>
-            </a>
-        </div>
-    }
+        @if (User.IsInRole("Manager"))
+        {
+            <div class="col-md-8">
+                <a href="/Books/Create" class="btn-icon-create" title="Добавить новую книгу">
+                    <i class="fa fa-file fa-2x"></i>
+                </a>
+            </div>
+        }
 
         <div class="col-md-4 pull-right books-filter">
             <div class="input-group">
                 <input type="text" class="form-control" aria-label="Text input with dropdown button">
                 <div class="input-group-btn">
                     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="filter-title">@Html.DisplayNameFor(model => model.name)</span>
+                        <span class="filter-title">@Html.DisplayNameFor(model => model.FirstOrDefault().name)</span>
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li id="0"><a href="#">@Html.DisplayNameFor(model => model.author)</a></li>
-                        <li id="1"><a href="#">@Html.DisplayNameFor(model => model.name)</a></li>
-                        <li id="2"><a href="#">@Html.DisplayNameFor(model => model.Knowledges)</a></li>
-                        <li id="3"><a href="#">@Html.DisplayNameFor(model => model.year)</a></li>
+                        <li id="0"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().author)</a></li>
+                        <li id="1"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().name)</a></li>
+                        <li id="2"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Knowledges)</a></li>
+                        <li id="3"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().year)</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-<div class="main-container">
-    @foreach (var item in Model)
-    {
-        <div class="card">
-            <div class="info">
-                <div class="name"> @Html.DisplayFor(modelItem => item.name) </div>
-                <div class="author">@Html.DisplayNameFor(model => model.author): @Html.DisplayFor(model => item.author)</div>
-                <div class="author">@Html.DisplayNameFor(model => model.ISBN): @Html.DisplayFor(model => item.ISBN)</div>
-                <div class="author">@Html.DisplayNameFor(model => model.publication_type): @Html.DisplayFor(model => item.publication_type)</div>
-                <div class="author">@Html.DisplayNameFor(model => model.place_publication): @Html.DisplayFor(model => item.place_publication)</div>
-                <div class="author">@Html.DisplayNameFor(model => model.publishing): @Html.DisplayFor(model => item.publishing)</div>
-                <div class="author">@Html.DisplayNameFor(model => model.year): @Html.DisplayFor(model => item.year)</div>
-                <div class="author">@Html.DisplayNameFor(model => model.price): @Html.DisplayFor(model => item.price)</div>
-                <div class="price">
-                    @if (User.IsInRole("Manager"))
-                    {
-                        <a href="/Books/Edit/@item.ISBN" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
-                    }
-                    <a href="/Books/Details/@item.ISBN" class="btn-icon-details"><i class="fa fa-info fa-lg"></i></a>
-                    @if (User.IsInRole("Manager"))
-                    {
-                        <a class="btn-icon-delete" onclick="showDelete('../Books/Delete/@item.ISBN');"><i class="fa fa-times fa-lg"></i></a>
-                    }
+
+    <div class="cards-container">
+        @foreach (var item in Model)
+        {
+            <div class="card">
+                <div class="info">
+                    <div class="name"> @Html.DisplayFor(modelItem => item.name) </div>
+                    <div class="author">@Html.DisplayNameFor(model => model.FirstOrDefault().author): @Html.DisplayFor(model => item.author)</div>
+                    <div class="author">@Html.DisplayNameFor(model => model.FirstOrDefault().ISBN): @Html.DisplayFor(model => item.ISBN)</div>
+                    <div class="author">@Html.DisplayNameFor(model => model.FirstOrDefault().publication_type): @Html.DisplayFor(model => item.publication_type)</div>
+                    <div class="author">@Html.DisplayNameFor(model => model.FirstOrDefault().place_publication): @Html.DisplayFor(model => item.place_publication)</div>
+                    <div class="author">@Html.DisplayNameFor(model => model.FirstOrDefault().publishing): @Html.DisplayFor(model => item.publishing)</div>
+                    <div class="author">@Html.DisplayNameFor(model => model.FirstOrDefault().year): @Html.DisplayFor(model => item.year)</div>
+                    <div class="author">@Html.DisplayNameFor(model => model.FirstOrDefault().price): @Html.DisplayFor(model => item.price)</div>
+                    <div class="price">
+                        @if (User.IsInRole("Manager"))
+                        {
+                            <a href="/Books/Edit/@item.ISBN" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
+                        }
+                        <a href="/Books/Details/@item.ISBN" class="btn-icon-details"><i class="fa fa-info fa-lg"></i></a>
+                        @if (User.IsInRole("Manager"))
+                        {
+                            <a class="btn-icon-delete" onclick="showDelete('../Books/Delete/@item.ISBN');"><i class="fa fa-times fa-lg"></i></a>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
 </div>

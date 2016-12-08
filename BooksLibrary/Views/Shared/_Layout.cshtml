@@ -13,6 +13,8 @@
 <body>
     <script src="@Url.Content("~/Scripts/delete.js")"></script>
     <link href="@Url.Content("~/Content/deleteDialog.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/CardBlock.css")" rel="stylesheet" type="text/css" />
+
     <div id="delete">
         <div>
             <p>Удалить?</p>
@@ -41,7 +43,6 @@
                             <li>@Html.ActionLink("Книги", "Index", "Books")</li>
                             <li>@Html.ActionLink("Экземпляры", "Index", "Instances")</li>
                             <li>@Html.ActionLink("Читатели", "Index", "Readers")</li>
-                            <li>@Html.ActionLink("Область знаний", "Index", "Knowledges")</li>
                             <li>@Html.ActionLink("Выдача книг", "Index", "Extraditions")</li>
                         }
 

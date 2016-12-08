@@ -1,5 +1,6 @@
-﻿.main-container {
+﻿.cards-container {
 	width: 100%;
+    text-align: center;
 }
 	
 .card {
@@ -51,6 +52,7 @@
 
 .info .author {
 	font-size: 12px;
+    text-align: left !important;
 }
 
 .info .price:before {

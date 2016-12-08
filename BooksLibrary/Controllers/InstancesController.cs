@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BooksLibrary.Models;
+using PagedList;
 
 namespace BooksLibrary.Controllers
 {
@@ -19,10 +17,18 @@ namespace BooksLibrary.Controllers
         private LibraryDatabaseEntities db = new LibraryDatabaseEntities();
 
         // GET: Instances
-        public ActionResult Index()
+        /*public ActionResult Index()
         {
             var instances = db.Instances.Include(i => i.Book);
             return View(instances.ToList());
+        }*/
+
+        public ActionResult Index(int? page)
+        {
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            var instances = db.Instances.Include(i => i.Book);
+            return View((instances.ToList()).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Instances/Details/5

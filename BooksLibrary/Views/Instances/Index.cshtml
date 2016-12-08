@@ -1,4 +1,6 @@
-﻿@model IEnumerable<BooksLibrary.Models.Instance>
+﻿@model PagedList.IPagedList<BooksLibrary.Models.Instance>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -17,16 +19,16 @@
             <input type="text" class="form-control" aria-label="Text input with dropdown button">
             <div class="input-group-btn">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="filter-title">@Html.DisplayNameFor(model => model.Book.name)</span>
+                    <span class="filter-title">@Html.DisplayNameFor(model => model.FirstOrDefault().Book.name)</span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.Book.ISBN)</a></li>
-                    <li id="1"><a href="#">@Html.DisplayNameFor(model => model.Book.name)</a></li>
-                    <li id="2"><a href="#">@Html.DisplayNameFor(model => model.room)</a></li>
-                    <li id="3"><a href="#">@Html.DisplayNameFor(model => model.rack)</a></li>
-                    <li id="4"><a href="#">@Html.DisplayNameFor(model => model.shelf)</a></li>
-                    <li id="5"><a href="#">@Html.DisplayNameFor(model => model.existence)</a></li>
+                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Book.ISBN)</a></li>
+                    <li id="1"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Book.name)</a></li>
+                    <li id="2"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().room)</a></li>
+                    <li id="3"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().rack)</a></li>
+                    <li id="4"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().shelf)</a></li>
+                    <li id="5"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().existence)</a></li>
                 </ul>
             </div>
         </div>
@@ -35,12 +37,12 @@
 
 <table class="table">
     <tr>
-        <th> @Html.DisplayNameFor(model => model.Book.ISBN) </th>
-        <th> @Html.DisplayNameFor(model => model.Book.name) </th>
-        <th> @Html.DisplayNameFor(model => model.room) </th>
-        <th> @Html.DisplayNameFor(model => model.rack) </th>
-        <th> @Html.DisplayNameFor(model => model.shelf) </th>
-        <th> @Html.DisplayNameFor(model => model.existence) </th>
+        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Book.ISBN) </th>
+        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Book.name) </th>
+        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().room) </th>
+        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().rack) </th>
+        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().shelf) </th>
+        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().existence) </th>
         <th></th>
     </tr>
 
@@ -58,4 +60,6 @@
         </td>
     </tr>
 }
+
 </table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BooksLibrary.Models;
+using PagedList;
+using System.Collections.Generic;
 
 namespace BooksLibrary.Controllers
 {
