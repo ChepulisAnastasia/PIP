@@ -22,12 +22,17 @@ namespace BooksLibrary.Controllers
             return View(db.Books.ToList());
         }*/
 
-        public ActionResult Index(int? page)
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult GetBooks(int? page)
         {
             int pageSize = 5;
             int pageNumber = (page ?? 1);
             List<Book> book = db.Books.ToList();
-            return View(book.ToPagedList(pageNumber, pageSize));
+            return Json(book.ToPagedList(pageNumber, pageSize), JsonRequestBehavior.AllowGet);
         }
 
         // GET: Books/Details/5
