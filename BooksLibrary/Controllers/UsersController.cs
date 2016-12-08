@@ -22,8 +22,10 @@ namespace BooksLibrary.Controllers
             return View();
         }
 
+        // Получение json объекта 
         public ActionResult GetUsers()
         {
+            // возвращаем коллекцию анонимных объектов (в Select) в формате json
             return Json(db.AspNetUsers.Select(item => new
             {
                 id = item.Id,

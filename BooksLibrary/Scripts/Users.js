@@ -1,7 +1,5 @@
 ﻿$(document).ready(function() {
-
-    var pageToLoad = 1;
-
+    // jgwery ==
     $.ajax({
         type: 'GET',
         url: '/Users/GetUsers',
@@ -9,6 +7,7 @@
             var table = $('.table');
 
             for (let i = 0; i < responce.length; i++) {
+                // создаем шаблонную строку, шаблонна так как `
                 var row = `<tr class="card" id="${responce[i].id}">
                            <td>${responce[i].email}</td>
                            <td>${responce[i].userName}</td>
