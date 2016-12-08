@@ -9,9 +9,7 @@
 <h2>Список областей знаний</h2>
 <div class="row">
     <div class="col-md-8">
-        <a href="/Knowledges/Create" class="btn-icon-create" title="Добавить область знаний">
-            <i class="fa fa-file fa-2x"></i>
-        </a>
+        @Html.ActionLink("Добавить книгу", "Create", "Knowledge", null, new { @class = "btn btn-icon-create" })
     </div>
 
     <div class="col-md-4 pull-right books-filter">

@@ -9,9 +9,7 @@
 <h2>Список всех читателей</h2>
 <div class="row">
     <div class="col-md-8">
-        <a href="/Readers/Create" class="btn-icon-create" title="Добавить нового читателя">
-            <i class="fa fa-file fa-2x"></i>
-        </a>
+        @Html.ActionLink("Добавить книгу", "Create", "Reader", null, new { @class = "btn btn-icon-create" })
     </div>
 
     <div class="col-md-4 pull-right books-filter">
