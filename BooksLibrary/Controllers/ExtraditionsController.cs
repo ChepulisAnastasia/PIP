@@ -21,7 +21,7 @@ namespace BooksLibrary.Controllers
         // GET: Extraditions
         public ActionResult Index(int? page)
         {
-            int pageSize = 5;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);
             List<Extradition> book = db.Extraditions.ToList();
             return View(book.ToPagedList(pageNumber, pageSize));

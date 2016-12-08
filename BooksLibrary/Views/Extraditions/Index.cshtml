@@ -9,7 +9,7 @@
 <h2>Список выданных книг</h2>
 <div class="row">
     <div class="col-md-8">
-        @Html.ActionLink("Добавить книгу", "Create", "Extradition", null, new { @class = "btn btn-icon-create" })
+        @Html.ActionLink("Выдать книгу", "Create", "Extraditions", null, new { @class = "btn btn-icon-create" })
     </div>
 
     <div class="col-md-4 pull-right books-filter">
@@ -21,18 +21,19 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Instance.ISBN)</a></li>
-                    <li id="1"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Instance.Book.name)</a></li>
-                    <li id="2"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Reader.last_name)</a></li>
-                    <li id="3"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Reader.name)</a></li>
-                    <li id="4"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().date_extradition)</a></li>
-                    <li id="5"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().return_date)</a></li>
+                    <li id="ISBN"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Instance.ISBN)</a></li>
+                    <li id="name"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Instance.Book.name)</a></li>
+                    <li id="last_name"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Reader.last_name)</a></li>
+                    <li id="reader_name"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Reader.name)</a></li>
+                    <li id="date_extradition"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().date_extradition)</a></li>
+                    <li id="return_date"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().return_date)</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
 
+<div class="main-container">
     <table class="table">
         <tr>
             <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Instance.ISBN) </th>
@@ -47,12 +48,12 @@
         @foreach (var item in Model)
         {
             <tr class="card" id="@item.id">
-                <td> @Html.DisplayFor(modelItem => item.Instance.ISBN) </td>
-                <td> @Html.DisplayFor(modelItem => item.Instance.Book.name) </td>
-                <td> @Html.DisplayFor(modelItem => item.Reader.last_name) </td>
-                <td> @Html.DisplayFor(modelItem => item.Reader.name) </td>
-                <td> @Html.DisplayFor(modelItem => item.date_extradition) </td>
-                <td> @Html.DisplayFor(modelItem => item.return_date) </td>
+                <td class="ISBN"> @Html.DisplayFor(modelItem => item.Instance.ISBN) </td>
+                <td class="name"> @Html.DisplayFor(modelItem => item.Instance.Book.name) </td>
+                <td class="last_name"> @Html.DisplayFor(modelItem => item.Reader.last_name) </td>
+                <td class="reader_name"> @Html.DisplayFor(modelItem => item.Reader.name) </td>
+                <td class="date_extradition"> @Html.DisplayFor(modelItem => item.date_extradition) </td>
+                <td class="return_date"> @Html.DisplayFor(modelItem => item.return_date) </td>
                 <td class="actions">
                     <a href="/Extraditions/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
                     <div class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></div>
@@ -60,11 +61,12 @@
             </tr>
         }
     </table>
-    <div class="page">
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-        <hr />
-    </div>
+</div>
+<div class="page">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    <hr />
+</div>
 
 <script>
-    var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';
+var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';
 </script>

@@ -29,38 +29,39 @@
         </div>
     </div>
 </div>
-
-<table class="table">
-    <tr>
-        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Book.ISBN) </th>
-        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Book.name) </th>
-        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().room) </th>
-        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().rack) </th>
-        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().shelf) </th>
-        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().existence) </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr class="card" id="@item.id">
-            <td class="ISBN"> @Html.DisplayFor(modelItem => item.Book.ISBN) </td>
-            <td class="name"> @Html.DisplayFor(modelItem => item.Book.name) </td>
-            <td class="room"> @Html.DisplayFor(modelItem => item.room) </td>
-            <td class="rack"> @Html.DisplayFor(modelItem => item.rack) </td>
-            <td class="shelf"> @Html.DisplayFor(modelItem => item.shelf) </td>
-            <td class="existence"> @Html.DisplayFor(modelItem => item.existence) </td>
-            <td class="actions">
-                <a href="/Instances/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
-                <div class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></div>
-            </td>
+<div class="main-container">
+    <table class="table">
+        <tr>
+            <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Book.ISBN) </th>
+            <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Book.name) </th>
+            <th> @Html.DisplayNameFor(model => model.FirstOrDefault().room) </th>
+            <th> @Html.DisplayNameFor(model => model.FirstOrDefault().rack) </th>
+            <th> @Html.DisplayNameFor(model => model.FirstOrDefault().shelf) </th>
+            <th> @Html.DisplayNameFor(model => model.FirstOrDefault().existence) </th>
+            <th></th>
         </tr>
-    }
-</table>
+
+        @foreach (var item in Model)
+        {
+            <tr class="card" id="@item.id">
+                <td class="ISBN"> @Html.DisplayFor(modelItem => item.Book.ISBN) </td>
+                <td class="name"> @Html.DisplayFor(modelItem => item.Book.name) </td>
+                <td class="room"> @Html.DisplayFor(modelItem => item.room) </td>
+                <td class="rack"> @Html.DisplayFor(modelItem => item.rack) </td>
+                <td class="shelf"> @Html.DisplayFor(modelItem => item.shelf) </td>
+                <td class="existence"> @Html.DisplayFor(modelItem => item.existence) </td>
+                <td class="actions">
+                    <a href="/Instances/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
+                    <div class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 <div class="cards-container">
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    <hr />
 </div>
-<hr />
 
 <script>
     var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';

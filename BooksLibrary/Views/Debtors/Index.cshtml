@@ -6,26 +6,49 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-<table class="table">
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().last_name) </th>
-        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().name) </th>
-        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().middle_name) </th>
-        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().phone) </th>
-        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().count_days) </th>
-    </tr>
+<h2>Список должников библиотеки <br />(Книга может находиться у читателя не более 10 дней)</h2>
+<div class="row">
+    <div class="col-md-4 pull-right books-filter">
+        <div class="input-group">
+            <input type="text" class="form-control" aria-label="Text input with dropdown button">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="filter-title">@Html.DisplayNameFor(model => model.FirstOrDefault().name)</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li id="last_name"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().last_name)</a></li>
+                    <li id="name"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().name)</a></li>
+                    <li id="middle_name"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().middle_name)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td> @Html.DisplayFor(modelItem => item.last_name) </td>
-        <td> @Html.DisplayFor(modelItem => item.name) </td>
-        <td> @Html.DisplayFor(modelItem => item.middle_name) </td>
-        <td> @Html.DisplayFor(modelItem => item.phone) </td>
-        <td> @Html.DisplayFor(modelItem => item.count_days) </td>
-    </tr>
-}
-</table>
+<div class="main-container">
+
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().last_name) </th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().name) </th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().middle_name) </th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().phone) </th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().count_days) </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="card">
+                <td class="last_name"> @Html.DisplayFor(modelItem => item.last_name) </td>
+                <td class="name"> @Html.DisplayFor(modelItem => item.name) </td>
+                <td class="middle_name"> @Html.DisplayFor(modelItem => item.middle_name) </td>
+                <td class="phone"> @Html.DisplayFor(modelItem => item.phone) </td>
+                <td class="count_days"> @Html.DisplayFor(modelItem => item.count_days) </td>
+            </tr>
+        }
+    </table>
+</div>
 <div class="page">
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
     <hr />

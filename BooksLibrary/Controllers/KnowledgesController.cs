@@ -25,7 +25,7 @@ namespace BooksLibrary.Controllers
 
         public ActionResult Index(int? page)
         {
-            int pageSize = 5;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);
             List<Knowledge> knowledge = db.Knowledges.ToList();
             return View(knowledge.ToPagedList(pageNumber, pageSize));

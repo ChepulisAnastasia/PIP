@@ -12,13 +12,19 @@ body {
 
 .main-container {
 	width: 100%;
+    min-height: 335px !important;
 }
+
 
 .page{
     margin: 0 12px;
 }
 
-
+h1 {
+    color: #ffeeee !important;
+    text-align: center;
+    padding: 20px;
+}
 h2 {
     text-align: center;
     padding: 15px;
@@ -92,11 +98,8 @@ tr[id]:hover {
 .table {
 	border: none;
 	border-collapse: collapse;
-	margin: auto;
-    padding-top: 10px;
-    padding: 10px;
-	position: relative;
     color: #e5e0e0;
+    padding: 10px;
     background-color: rgba(51, 23, 9, .6);
 }
 .table tr:nth-child(2n+1), .details tr:nth-child(2n+1) {
