@@ -88,7 +88,7 @@ tr[id]:hover {
 .table {
 	border: none;
 	border-collapse: collapse;
-	margin: 12px;
+	margin: auto;
     padding-top: 10px;
     padding: 10px;
 	position: relative;
