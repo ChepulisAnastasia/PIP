@@ -11,8 +11,7 @@ namespace BooksLibrary.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Instance
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,15 +21,11 @@ namespace BooksLibrary.Models
         }
     
         public int id { get; set; }
-        public string ISBN { get; set; }
-        [Display(Name = "Комната №")]
         public short room { get; set; }
-        [Display(Name = "Стеллаж №")]
         public short rack { get; set; }
-        [Display(Name = "Полка №")]
         public short shelf { get; set; }
-        [Display(Name = "Наличие")]
         public string existence { get; set; }
+        public string ISBN { get; set; }
     
         public virtual Book Book { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

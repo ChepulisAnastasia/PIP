@@ -86,7 +86,7 @@
           <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="middle_name" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="phone" Type="varchar" MaxLength="13" Nullable="false" />
-          <Property Name="Количество дней задержки" Type="int" />
+          <Property Name="count_days" Type="int" />
         </EntityType>
         <Association Name="FK__Catalogs__ISBN__114A936A">
           <End Role="Books" Type="Self.Books" Multiplicity="1" />
@@ -190,7 +190,7 @@
     [Debtors].[name] AS [name], 
     [Debtors].[middle_name] AS [middle_name], 
     [Debtors].[phone] AS [phone], 
-    [Debtors].[Количество дней задержки] AS [Количество дней задержки]
+    [Debtors].[count_days] AS [count_days]
     FROM [dbo].[Debtors] AS [Debtors]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__Catalogs__ISBN__114A936A" Association="Self.FK__Catalogs__ISBN__114A936A">
@@ -449,7 +449,7 @@
           <EntitySetMapping Name="Debtors">
             <EntityTypeMapping TypeName="LibraryDatabaseModel.Debtor">
               <MappingFragment StoreEntitySet="Debtors">
-                <ScalarProperty Name="count_days" ColumnName="Количество дней задержки" />
+                <ScalarProperty Name="count_days" ColumnName="count_days" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="middle_name" ColumnName="middle_name" />
                 <ScalarProperty Name="name" ColumnName="name" />
