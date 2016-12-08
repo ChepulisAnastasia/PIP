@@ -459,9 +459,7 @@
     <Content Include="Views\Error\Forbidden.cshtml" />
     <Content Include="Views\Debtors\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\qwerty\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

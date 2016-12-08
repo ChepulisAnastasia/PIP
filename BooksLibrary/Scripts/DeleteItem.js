@@ -2,16 +2,15 @@
     var item = $(this);
     bootbox.dialog({
         size: "small",
-        title: 'Удалить запись?',
-        message: "Delete?",
+        message: "Удалить запись?",
         onEscape: true,
         backdrop: true,
         buttons: {
             cancel: {
-                label: "Нет",
+                label: '<i class="fa fa-times fa-2x"></i>',
             },
             yes: {
-                label: "Да",
+                label: '<i class="fa fa-check fa-2x"></i>',
                 className: 'btn-danger',
                 callback: function () {
                     $.post(deleteUrl, { id: item.parents('.card').attr('id') });

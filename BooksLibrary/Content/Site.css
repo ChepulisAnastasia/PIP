@@ -143,3 +143,11 @@ tr[id]:hover {
     text-align: center;
     padding-top: 6px;
 }
+
+.bootbox {
+    color: #999;
+}
+
+.bootbox .modal-content {
+    background: rgb(80, 50, 15);
+}
