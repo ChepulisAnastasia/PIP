@@ -1,4 +1,6 @@
-﻿@model IEnumerable<BooksLibrary.Models.AspNetUser>
+﻿@model PagedList.IPagedList<BooksLibrary.Models.AspNetUser>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -11,12 +13,12 @@
             <input type="text" class="form-control" aria-label="Text input with dropdown button">
             <div class="input-group-btn">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="filter-title">@Html.DisplayNameFor(model => model.UserName)</span>
+                    <span class="filter-title">@Html.DisplayNameFor(model => model.FirstOrDefault().UserName)</span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.Email)</a></li>
-                    <li id="1"><a href="#">@Html.DisplayNameFor(model => model.UserName)</a></li>
+                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Email)</a></li>
+                    <li id="1"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().UserName)</a></li>
                 </ul>
             </div>
         </div>
@@ -25,9 +27,9 @@
 
 <table class="table">
     <tr>
-        <th> @Html.DisplayNameFor(model => model.Email) </th>
-        <th> @Html.DisplayNameFor(model => model.UserName) </th>
-        <th> @Html.DisplayNameFor(model => model.AspNetRoles.First().Name) </th>
+        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Email) </th>
+        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().UserName) </th>
+        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().AspNetRoles.First().Name) </th>
         <th></th>
     </tr>
 
@@ -46,6 +48,10 @@
 }
 
 </table>
+<div class="page">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    <hr />
+</div>
 
 <script>
     var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';

@@ -1,4 +1,6 @@
-﻿@model IEnumerable<BooksLibrary.Models.Extradition>
+﻿@model PagedList.IPagedList<BooksLibrary.Models.Extradition>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -17,16 +19,16 @@
             <input type="text" class="form-control" aria-label="Text input with dropdown button">
             <div class="input-group-btn">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="filter-title">@Html.DisplayNameFor(model => model.Instance.Book.name)</span>
+                    <span class="filter-title">@Html.DisplayNameFor(model => model.FirstOrDefault().Instance.Book.name)</span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.Instance.ISBN)</a></li>
-                    <li id="1"><a href="#">@Html.DisplayNameFor(model => model.Instance.Book.name)</a></li>
-                    <li id="2"><a href="#">@Html.DisplayNameFor(model => model.Reader.last_name)</a></li>
-                    <li id="3"><a href="#">@Html.DisplayNameFor(model => model.Reader.name)</a></li>
-                    <li id="4"><a href="#">@Html.DisplayNameFor(model => model.date_extradition)</a></li>
-                    <li id="5"><a href="#">@Html.DisplayNameFor(model => model.return_date)</a></li>
+                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Instance.ISBN)</a></li>
+                    <li id="1"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Instance.Book.name)</a></li>
+                    <li id="2"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Reader.last_name)</a></li>
+                    <li id="3"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Reader.name)</a></li>
+                    <li id="4"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().date_extradition)</a></li>
+                    <li id="5"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().return_date)</a></li>
                 </ul>
             </div>
         </div>
@@ -35,12 +37,12 @@
 
     <table class="table">
         <tr>
-            <th> @Html.DisplayNameFor(model => model.Instance.ISBN) </th>
-            <th> @Html.DisplayNameFor(model => model.Instance.Book.name) </th>
-            <th> @Html.DisplayNameFor(model => model.Reader.last_name) </th>
-            <th> @Html.DisplayNameFor(model => model.Reader.name) </th>
-            <th> @Html.DisplayNameFor(model => model.date_extradition) </th>
-            <th> @Html.DisplayNameFor(model => model.return_date) </th>
+            <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Instance.ISBN) </th>
+            <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Instance.Book.name) </th>
+            <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Reader.last_name) </th>
+            <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Reader.name) </th>
+            <th> @Html.DisplayNameFor(model => model.FirstOrDefault().date_extradition) </th>
+            <th> @Html.DisplayNameFor(model => model.FirstOrDefault().return_date) </th>
             <th></th>
         </tr>
 
@@ -60,6 +62,10 @@
             </tr>
         }
     </table>
+    <div class="page">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        <hr />
+    </div>
 
 <script>
     var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';

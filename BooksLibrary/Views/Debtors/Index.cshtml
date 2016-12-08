@@ -1,4 +1,6 @@
-﻿@model IEnumerable<BooksLibrary.Models.Debtor>
+﻿@model PagedList.IPagedList<BooksLibrary.Models.Debtor>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -7,11 +9,11 @@
 <h2>Index</h2>
 <table class="table">
     <tr>
-        <th>@Html.DisplayNameFor(model => model.last_name) </th>
-        <th>@Html.DisplayNameFor(model => model.name) </th>
-        <th>@Html.DisplayNameFor(model => model.middle_name) </th>
-        <th>@Html.DisplayNameFor(model => model.phone) </th>
-        <th>@Html.DisplayNameFor(model => model.count_days) </th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().last_name) </th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().name) </th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().middle_name) </th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().phone) </th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().count_days) </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -24,3 +26,7 @@
     </tr>
 }
 </table>
+<div class="page">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    <hr />
+</div>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -7,6 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BooksLibrary.Models;
+using PagedList;
 
 namespace BooksLibrary.Controllers
 {
@@ -19,10 +19,12 @@ namespace BooksLibrary.Controllers
         private LibraryDatabaseEntities db = new LibraryDatabaseEntities();
 
         // GET: Extraditions
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var extraditions = db.Extraditions.Include(e => e.Instance).Include(e => e.Reader);
-            return View(extraditions.ToList());
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            List<Extradition> book = db.Extraditions.ToList();
+            return View(book.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Extraditions/Create

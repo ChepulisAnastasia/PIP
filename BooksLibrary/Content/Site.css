@@ -7,7 +7,7 @@ body {
     padding: 50px;
     background: #462715 url(/img/5.jpg);
     background-size: cover;
-    color: #e8c9b4;
+    color: #e8c9b4 !important;
 }
 
 .main-container {
@@ -133,21 +133,20 @@ tr[id]:hover {
 
 
 .actions {
-    width: 100px;
+    width: 120px;
 }
 
 .actions > * {
     display: inline-block;
     width: 30px;
-    height: 30px;
     text-align: center;
-    padding-top: 6px;
+    margin: 0;
 }
 
 .bootbox {
-    color: #999;
+    color: rgb(252, 240, 235);
 }
 
 .bootbox .modal-content {
-    background: rgb(80, 50, 15);
+    background: rgb(85, 39, 16);
 }

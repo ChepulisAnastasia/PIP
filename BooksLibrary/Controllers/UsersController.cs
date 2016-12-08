@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BooksLibrary.Models;
+using PagedList;
+using System.Collections.Generic;
 
 namespace BooksLibrary.Controllers
 {
@@ -19,9 +21,17 @@ namespace BooksLibrary.Controllers
         private DefaultConnectionEntities db = new DefaultConnectionEntities();
 
         // GET: Users
-        public ActionResult Index()
+        /*public ActionResult Index()
         {
             return View(db.AspNetUsers.ToList());
+        }*/
+
+        public ActionResult Index(int? page)
+        {
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            List<AspNetUser> user = db.AspNetUsers.ToList();
+            return View(user.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Users/Details/5

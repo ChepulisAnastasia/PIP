@@ -1,9 +1,8 @@
 ﻿using BooksLibrary.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace BooksLibrary.Controllers
 {
@@ -12,9 +11,16 @@ namespace BooksLibrary.Controllers
         private LibraryDatabaseEntities db = new LibraryDatabaseEntities();
 
         // GET: Debtors
-        public ActionResult Index()
+        /*public ActionResult Index()
         {
             return View(db.Debtors.ToList());
+        }*/
+        public ActionResult Index(int? page)
+        {
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            List<Debtor> debtor = db.Debtors.ToList();
+            return View(debtor.ToPagedList(pageNumber, pageSize));
         }
     }
 }

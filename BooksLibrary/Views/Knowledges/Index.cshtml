@@ -1,4 +1,6 @@
-﻿@model IEnumerable<BooksLibrary.Models.Knowledge>
+﻿@model PagedList.IPagedList<BooksLibrary.Models.Knowledge>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -17,11 +19,11 @@
             <input type="text" class="form-control" aria-label="Text input with dropdown button">
             <div class="input-group-btn">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="filter-title">@Html.DisplayNameFor(model => model.knowledge1)</span>
+                    <span class="filter-title">@Html.DisplayNameFor(model => model.FirstOrDefault().knowledge1)</span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.knowledge1)</a></li>
+                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().knowledge1)</a></li>
                 </ul>
             </div>
         </div>
@@ -30,7 +32,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.knowledge1)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().knowledge1)
         </th>
         <th></th>
     </tr>
@@ -48,6 +50,10 @@
 }
 
 </table>
+<div class="page">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    <hr />
+</div>
 
 <script>
     var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';
