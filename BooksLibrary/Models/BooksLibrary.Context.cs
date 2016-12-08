@@ -30,5 +30,6 @@ namespace BooksLibrary.Models
         public virtual DbSet<Instance> Instances { get; set; }
         public virtual DbSet<Knowledge> Knowledges { get; set; }
         public virtual DbSet<Reader> Readers { get; set; }
+        public virtual DbSet<Debtor> Debtors { get; set; }
     }
 }

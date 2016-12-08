@@ -208,6 +208,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\DebtorsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ExtraditionsController.cs" />
     <Compile Include="Controllers\InstancesController.cs" />
@@ -245,6 +246,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BooksLibrary.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Debtor.cs">
+      <DependentUpon>BooksLibrary.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Extradition.cs">
       <DependentUpon>BooksLibrary.tt</DependentUpon>
@@ -453,6 +457,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\NullParameter.cshtml" />
     <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\Debtors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\qwerty\" />
