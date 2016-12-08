@@ -13,20 +13,6 @@
 <body>
     <link href="@Url.Content("~/Content/deleteDialog.css")" rel="stylesheet" type="text/css" />
 
-    <div id="delete">
-        <div>
-            <p>Удалить?</p>
-            <form id="delform" action="" method="post">
-                @Html.AntiForgeryToken()
-                <a class="btn-icon-delete" onclick="del()" title="Удалить"><i class="fa fa-check fa-2x"></i></a>
-                <a class="btn-icon-edit" onclick="hideDel()" title="Отмена"><i class="fa fa-times fa-2x"></i></a>
-
-                <input type="submit" value="Да" onclick="del()" class="btn btn-danger delbut">
-                <input type="button" value="Нет" onclick="hideDel()" class="btn btn-success delbut">
-            </form>
-        </div>
-    </div>
-
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
