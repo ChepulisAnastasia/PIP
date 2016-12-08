@@ -11,8 +11,7 @@ namespace BooksLibrary.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Book
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,37 +20,24 @@ namespace BooksLibrary.Models
             this.Instances = new HashSet<Instance>();
             this.Knowledges = new HashSet<Knowledge>();
         }
-
+    
         public string ISBN { get; set; }
-        [Display(Name = "Название")]
-        public string name { get; set; }
-        [Display(Name = "Автор")]
         public string author { get; set; }
-        [Display(Name = "Вид издания")]
+        public string name { get; set; }
         public string publication_type { get; set; }
-        [Display(Name = "Том")]
         public Nullable<short> tome { get; set; }
-        [Display(Name = "Составитель")]
         public string compiler { get; set; }
-        [Display(Name = "Язык")]
         public string language { get; set; }
-        [Display(Name = "Переводчик")]
         public string translator { get; set; }
-        [Display(Name = "Место издания")]
         public string place_publication { get; set; }
-        [Display(Name = "Издательство")]
         public string publishing { get; set; }
-        [Display(Name = "Год")]
         public Nullable<int> year { get; set; }
-        [Display(Name = "Количество")]
-        public short number { get; set; }
-        [Display(Name = "Цена")]
+        public Nullable<short> number { get; set; }
         public decimal price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Instance> Instances { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [Display(Name = "Области знаний")]
         public virtual ICollection<Knowledge> Knowledges { get; set; }
     }
 }

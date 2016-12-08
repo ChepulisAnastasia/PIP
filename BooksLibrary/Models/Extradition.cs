@@ -11,16 +11,13 @@ namespace BooksLibrary.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Extradition
     {
         public int id { get; set; }
         public int instance_id { get; set; }
         public int reader_id { get; set; }
-        [Display(Name = "Дата выдачи")]
         public Nullable<System.DateTime> date_extradition { get; set; }
-        [Display(Name = "Дата возврата")]
         public Nullable<System.DateTime> return_date { get; set; }
     
         public virtual Instance Instance { get; set; }
