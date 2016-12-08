@@ -109,14 +109,12 @@ namespace BooksLibrary.Controllers
         }
 
         // POST: Readers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public void DeleteConfirmed(int id)
         {
             Reader reader = db.Readers.Find(id);
             db.Readers.Remove(reader);
             db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

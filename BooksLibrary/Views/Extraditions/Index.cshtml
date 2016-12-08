@@ -46,17 +46,21 @@
 
         @foreach (var item in Model)
         {
-            <tr id="../Instances/Edit/@item.id">
+            <tr class="card" id="@item.id">
                 <td> @Html.DisplayFor(modelItem => item.Instance.ISBN) </td>
                 <td> @Html.DisplayFor(modelItem => item.Instance.Book.name) </td>
                 <td> @Html.DisplayFor(modelItem => item.Reader.last_name) </td>
                 <td> @Html.DisplayFor(modelItem => item.Reader.name) </td>
                 <td> @Html.DisplayFor(modelItem => item.date_extradition) </td>
                 <td> @Html.DisplayFor(modelItem => item.return_date) </td>
-                <td>
+                <td class="actions">
                     <a href="/Extraditions/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
-                    <a onclick="showDelete('/Extraditions/Delete/@item.id');" class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></a>
+                    <div class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></div>
                 </td>
             </tr>
         }
     </table>
+
+<script>
+    var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';
+</script>

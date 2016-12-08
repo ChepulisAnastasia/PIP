@@ -39,7 +39,7 @@
     <div class="cards-container">
         @foreach (var item in Model)
         {
-            <div class="card">
+            <div class="card" id="@item.ISBN">
                 <div class="info">
                     <div class="name"> @Html.DisplayFor(modelItem => item.name) </div>
                     <div class="author">@Html.DisplayFor(model => item.author)</div>
@@ -57,7 +57,7 @@
                         <a href="/Books/Details/@item.ISBN" class="btn-icon-details"><i class="fa fa-info fa-lg"></i></a>
                         @if (User.IsInRole("Manager"))
                         {
-                            <a class="btn-icon-delete" onclick="showDelete('../Books/Delete/@item.ISBN');"><i class="fa fa-times fa-lg"></i></a>
+                            <div class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></div>
                         }
                     </div>
                 </div>
@@ -69,3 +69,7 @@
         <hr />
     </div>
 </div>
+
+<script>
+    var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';
+</script>

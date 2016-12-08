@@ -105,14 +105,12 @@ namespace BooksLibrary.Controllers
         }
 
         // POST: Instances/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public void DeleteConfirmed(int id)
         {
             Instance instance = db.Instances.Find(id);
             db.Instances.Remove(instance);
             db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

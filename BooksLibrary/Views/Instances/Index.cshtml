@@ -46,16 +46,16 @@
 
     @foreach (var item in Model)
     {
-        <tr id="../Instances/Edit/@item.id" class="card">
+        <tr class="card" id="@item.id">
             <td class="ISBN"> @Html.DisplayFor(modelItem => item.Book.ISBN) </td>
             <td class="name"> @Html.DisplayFor(modelItem => item.Book.name) </td>
             <td class="room"> @Html.DisplayFor(modelItem => item.room) </td>
             <td class="rack"> @Html.DisplayFor(modelItem => item.rack) </td>
             <td class="shelf"> @Html.DisplayFor(modelItem => item.shelf) </td>
             <td class="existence"> @Html.DisplayFor(modelItem => item.existence) </td>
-            <td>
+            <td class="actions">
                 <a href="/Instances/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
-                <a onclick="showDelete('/Instances/Delete/@item.id');" class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></a>
+                <div class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></div>
             </td>
         </tr>
     }
@@ -64,3 +64,7 @@
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 </div>
 <hr />
+
+<script>
+    var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';
+</script>

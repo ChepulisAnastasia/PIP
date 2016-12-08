@@ -32,17 +32,21 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr id="../Users/Edit/@item.Id">
+    <tr class="card" id="@item.Id">
         <td> @Html.DisplayFor(modelItem => item.Email) </td>
         <td> @Html.DisplayFor(modelItem => item.UserName) </td>
         <td> @Html.DisplayFor(modelItem => item.AspNetRoles.First().Name)
         </td>
-        <td>
+        <td class="actions">
             <a href="/Users/Edit/@item.Id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
             <a href="/Users/Details/@item.Id" class="btn-icon-details"><i class="fa fa-info fa-lg"></i></a>
-            <a onclick="showDelete('/Users/Delete/@item.Id');" class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></a>
+            <div class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></div>
         </td>
     </tr>
 }
 
 </table>
+
+<script>
+    var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';
+</script>

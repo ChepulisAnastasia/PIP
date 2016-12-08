@@ -44,18 +44,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr id="../Readers/Edit/@item.id">
-        <td> @Html.DisplayFor(modelItem => item.last_name) </td>
-        <td> @Html.DisplayFor(modelItem => item.name) </td>
-        <td> @Html.DisplayFor(modelItem => item.middle_name) </td>
-        <td> @Html.DisplayFor(modelItem => item.age) </td>
-        <td> @Html.DisplayFor(modelItem => item.address) </td>
-        <td> @Html.DisplayFor(modelItem => item.phone) </td>
-        <td>
-            <a href="/Readers/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
-            <a onclick="showDelete('/Readers/Delete/@item.id');" class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></a>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr class="card" id="@item.id">
+            <td> @Html.DisplayFor(modelItem => item.last_name) </td>
+            <td> @Html.DisplayFor(modelItem => item.name) </td>
+            <td> @Html.DisplayFor(modelItem => item.middle_name) </td>
+            <td> @Html.DisplayFor(modelItem => item.age) </td>
+            <td> @Html.DisplayFor(modelItem => item.address) </td>
+            <td> @Html.DisplayFor(modelItem => item.phone) </td>
+            <td class="actions">
+                <a href="/Readers/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
+                <div class="btn-icon-delete"><i class="fa fa-times fa-lg"></i>
+                </div>
+            </td>
+        </tr>
+    }
 </table>
+
+<script>
+    var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';
+</script>

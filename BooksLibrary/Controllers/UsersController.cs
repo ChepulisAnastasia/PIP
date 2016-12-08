@@ -122,14 +122,12 @@ namespace BooksLibrary.Controllers
         }
 
         // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        [HttpPost]
+        public void DeleteConfirmed(string id)
         {
             AspNetUser aspNetUser = db.AspNetUsers.Find(id);
             db.AspNetUsers.Remove(aspNetUser);
             db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

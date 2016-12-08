@@ -111,14 +111,12 @@ namespace BooksLibrary.Controllers
         }
 
         // POST: Knowledges/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public void DeleteConfirmed(int id)
         {
             Knowledge knowledge = db.Knowledges.Find(id);
             db.Knowledges.Remove(knowledge);
             db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

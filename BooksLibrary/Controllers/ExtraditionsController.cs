@@ -103,14 +103,12 @@ namespace BooksLibrary.Controllers
         }
 
         // POST: Extraditions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public void DeleteConfirmed(int id)
         {
             Extradition extradition = db.Extraditions.Find(id);
             db.Extraditions.Remove(extradition);
             db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

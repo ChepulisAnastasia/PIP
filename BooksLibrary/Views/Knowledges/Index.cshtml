@@ -36,15 +36,19 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr id="../Knowledges/Edit/@item.id">
+    <tr class="card" id="@item.id">
         <td>
             @Html.DisplayFor(modelItem => item.knowledge1)
         </td>
-        <td>
+        <td class="actions">
             <a href="/Knowledges/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
-            <a onclick="showDelete('/Knowledges/Delete/@item.id');" class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></a>
+            <div class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></div>
         </td>
     </tr>
 }
 
 </table>
+
+<script>
+    var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';
+</script>

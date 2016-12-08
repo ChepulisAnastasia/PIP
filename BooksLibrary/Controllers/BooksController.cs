@@ -104,17 +104,15 @@ namespace BooksLibrary.Controllers
         }
 
         // POST: Books/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost]
         [Authorize(Roles = "Manager")]
-        public ActionResult DeleteConfirmed(string id)
+        public void DeleteConfirmed(string id)
         {
             try
             {
                 Book book = db.Books.Find(id);
                 db.Books.Remove(book);
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
             catch (Exception e)
             {
