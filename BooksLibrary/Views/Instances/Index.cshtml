@@ -9,9 +9,7 @@
 <h2>Список всех экземпляров книг</h2>
 <div class="row">
     <div class="col-md-8">
-        <a href="/Instances/Create" class="btn-icon-create" title="Добавить экземпляр книги">
-            <i class="fa fa-file fa-2x"></i>
-        </a>
+        @Html.ActionLink("Добавить экземпляр", "Create", "Instances", null, new { @class = "btn btn-icon-create" })
     </div>
 
     <div class="col-md-4 pull-right books-filter">
@@ -46,20 +44,23 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr id="../Instances/Edit/@item.id">
-        <td> @Html.DisplayFor(modelItem => item.Book.ISBN) </td>
-        <td> @Html.DisplayFor(modelItem => item.Book.name) </td>
-        <td> @Html.DisplayFor(modelItem => item.room) </td>
-        <td> @Html.DisplayFor(modelItem => item.rack) </td>
-        <td> @Html.DisplayFor(modelItem => item.shelf) </td>
-        <td> @Html.DisplayFor(modelItem => item.existence) </td>
-        <td>
-            <a href="/Instances/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
-            <a onclick="showDelete('/Instances/Delete/@item.id');" class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></a>
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr id="../Instances/Edit/@item.id" class="card">
+            <td class="ISBN"> @Html.DisplayFor(modelItem => item.Book.ISBN) </td>
+            <td class="name"> @Html.DisplayFor(modelItem => item.Book.name) </td>
+            <td class="room"> @Html.DisplayFor(modelItem => item.room) </td>
+            <td class="rack"> @Html.DisplayFor(modelItem => item.rack) </td>
+            <td class="shelf"> @Html.DisplayFor(modelItem => item.shelf) </td>
+            <td class="existence"> @Html.DisplayFor(modelItem => item.existence) </td>
+            <td>
+                <a href="/Instances/Edit/@item.id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
+                <a onclick="showDelete('/Instances/Delete/@item.id');" class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></a>
+            </td>
+        </tr>
+    }
 </table>
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<div class="cards-container">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
+<hr />

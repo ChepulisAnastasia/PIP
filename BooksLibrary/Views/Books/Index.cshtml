@@ -1,6 +1,8 @@
 ﻿@model PagedList.IPagedList<BooksLibrary.Models.Book>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/CardBlock.css")" rel="stylesheet" type="text/css" />
+
 @{
     ViewBag.Title = "Index";
 }
@@ -11,9 +13,7 @@
         @if (User.IsInRole("Manager"))
         {
             <div class="col-md-8">
-                <a href="/Books/Create" class="btn-icon-create" title="Добавить новую книгу">
-                    <i class="fa fa-file fa-2x"></i>
-                </a>
+                @Html.ActionLink("Добавить книгу", "Create", "Books", null, new { @class = "btn btn-icon-create" })
             </div>
         }
 
@@ -37,32 +37,35 @@
     </div>
 
     <div class="cards-container">
-        @foreach (var item in Model)
-        {
-            <div class="card">
-                <div class="info">
-                    <div class="name"> @Html.DisplayFor(modelItem => item.name) </div>
-                    <div class="author">@Html.DisplayFor(model => item.author)</div>
-                    <div class="isbn">@Html.DisplayFor(model => item.ISBN)</div>
-                    <div class="publication_type">@Html.DisplayFor(model => item.publication_type)</div>
-                    <div class="place_publication">@Html.DisplayFor(model => item.place_publication)</div>
-                    <div class="publishing">@Html.DisplayFor(model => item.publishing)</div>
-                    <div class="year">@Html.DisplayFor(model => item.year)</div>
-                    <div class="price">@Html.DisplayFor(model => item.price)</div>
-                    <div class="actions">
-                        @if (User.IsInRole("Manager"))
-                        {
-                            <a href="/Books/Edit/@item.ISBN" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
-                        }
-                        <a href="/Books/Details/@item.ISBN" class="btn-icon-details"><i class="fa fa-info fa-lg"></i></a>
-                        @if (User.IsInRole("Manager"))
-                        {
-                            <a class="btn-icon-delete" onclick="showDelete('../Books/Delete/@item.ISBN');"><i class="fa fa-times fa-lg"></i></a>
-                        }
+        <div class="cards">
+            @foreach (var item in Model)
+            {
+                <div class="card">
+                    <div class="info">
+                        <div class="name"> @Html.DisplayFor(modelItem => item.name) </div>
+                        <div class="author">@Html.DisplayFor(model => item.author)</div>
+                        <div class="isbn">@Html.DisplayFor(model => item.ISBN)</div>
+                        <div class="publication_type">@Html.DisplayFor(model => item.publication_type)</div>
+                        <div class="place_publication">@Html.DisplayFor(model => item.place_publication)</div>
+                        <div class="publishing">@Html.DisplayFor(model => item.publishing)</div>
+                        <div class="year">@Html.DisplayFor(model => item.year)</div>
+                        <div class="price">@Html.DisplayFor(model => item.price)</div>
+                        <div class="actions">
+                            @if (User.IsInRole("Manager"))
+                            {
+                                <a href="/Books/Edit/@item.ISBN" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
+                            }
+                            <a href="/Books/Details/@item.ISBN" class="btn-icon-details"><i class="fa fa-info fa-lg"></i></a>
+                            @if (User.IsInRole("Manager"))
+                            {
+                                <a class="btn-icon-delete" onclick="showDelete('../Books/Delete/@item.ISBN');"><i class="fa fa-times fa-lg"></i></a>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        <hr />
     </div>
 </div>

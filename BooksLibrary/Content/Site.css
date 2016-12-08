@@ -1,6 +1,11 @@
-﻿body {
+﻿@media (min-width: 1270px){
+    main-container {
+        overflow:  hidden;
+    }
+}
+body {
     padding: 50px;
-    background: #462715 url(/img/5.jpg) no-repeat;
+    background: #462715 url(/img/5.jpg);
     background-size: cover;
     color: #e8c9b4;
 }
@@ -12,7 +17,7 @@
 
 h2 {
     text-align: center;
-    padding: 20px;
+    padding: 15px;
 }
 h4 {
     padding: 20px 0 0 20px ;
@@ -46,11 +51,12 @@ tr[id]:hover {
 /* Icons */
 .btn-icon div {display: inline-block}          
 .btn-icon-create {
-    color: #8dd936 !important;
+    color: #140e0d !important;
+    background: #8dd936;
     transition: .5s all;
 }
 .btn-icon-create:hover {
-    color: #2b8125 !important;
+    background: #4f8a0c;
 }
 
 .btn-icon-edit {
@@ -82,7 +88,7 @@ tr[id]:hover {
 .table {
 	border: none;
 	border-collapse: collapse;
-	margin: auto;
+	margin: 12px;
     padding-top: 10px;
     padding: 10px;
 	position: relative;
@@ -110,7 +116,7 @@ tr[id]:hover {
 
 /* filter input */
 .row {
-    margin: 0 12px 10px 12px;
+    margin: 0 0 15px 0;
 }
 
 .books-filter .dropdown-menu { 

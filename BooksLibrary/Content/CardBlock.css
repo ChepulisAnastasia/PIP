@@ -2,6 +2,9 @@
 	width: 100%;
     text-align: center;
 }
+.cards {
+    min-height:340px;
+}
 	
 .card {
 	width: 200px;
