@@ -1,9 +1,7 @@
 ﻿.cards-container {
 	width: 100%;
-    text-align: center;
-}
-.cards {
     min-height:340px;
+    text-align: center;
 }
 	
 .card {
