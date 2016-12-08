@@ -11,7 +11,7 @@ $(document).ready(function() {
 $(".books-filter .dropdown-menu li").click(function () {
     var item = $(this);
     item.parents(".input-group-btn").find(".filter-title").text(item.text());
-    filteredColumn = item.attr("id");
+    filteredColumnId = item.attr("id");
 
     var input = $(".books-filter input");
     input.val("");
