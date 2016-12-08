@@ -325,12 +325,13 @@
       <DependentUpon>User.edmx</DependentUpon>
       <LastGenOutput>User.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\ai.0.22.19-build00125.js" />
-    <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
-    <Content Include="Scripts\BooksFilter.js" />
-    <Content Include="Scripts\bootbox.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ExternalLibraries\ai.0.22.19-build00125.js" />
+    <Content Include="Scripts\ExternalLibraries\ai.0.22.19-build00125.min.js" />
+    <Content Include="Scripts\Users.js" />
+    <Content Include="Scripts\Books\BooksFilter.js" />
+    <Content Include="Scripts\ExternalLibraries\bootbox.min.js" />
+    <Content Include="Scripts\ExternalLibraries\bootstrap.js" />
+    <Content Include="Scripts\ExternalLibraries\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -382,19 +383,18 @@
     <Content Include="Content\font-awesome-4.7.0\scss\_stacked.scss" />
     <Content Include="Content\font-awesome-4.7.0\scss\_variables.scss" />
     <Content Include="App_Data\LibraryDatabase.bacpac" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\delete.js" />
+    <None Include="Scripts\ExternalLibraries\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DeleteItem.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ExternalLibraries\jquery-1.10.2.js" />
+    <Content Include="Scripts\ExternalLibraries\jquery-1.10.2.min.js" />
+    <None Include="Scripts\ExternalLibraries\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\ExternalLibraries\jquery.validate.js" />
+    <Content Include="Scripts\ExternalLibraries\jquery.validate.min.js" />
+    <Content Include="Scripts\ExternalLibraries\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\ExternalLibraries\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\ExternalLibraries\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ExternalLibraries\respond.js" />
+    <Content Include="Scripts\ExternalLibraries\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -466,7 +466,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\ExternalLibraries\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

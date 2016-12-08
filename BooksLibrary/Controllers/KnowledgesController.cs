@@ -117,11 +117,12 @@ namespace BooksLibrary.Controllers
 
         // POST: Knowledges/Delete/5
         [HttpPost]
-        public void DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Knowledge knowledge = db.Knowledges.Find(id);
             db.Knowledges.Remove(knowledge);
             db.SaveChanges();
+            return Json(new { status = "ok" });
         }
 
         protected override void Dispose(bool disposing)

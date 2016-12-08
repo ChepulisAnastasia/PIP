@@ -13,9 +13,22 @@
                 label: '<i class="fa fa-check fa-2x"></i>',
                 className: 'btn-danger',
                 callback: function () {
-                    $.post(deleteUrl, { id: item.parents('.card').attr('id') });
-                    item.parents('.card').remove();
-                    console.log('deleted');
+                    $.ajax({
+                        type: 'POST',
+                        url: deleteUrl,
+                        data: { id: item.parents('.card').attr('id') },
+                        success: function (responce) {
+                            if (responce.status === 'ok') {
+                                item.parents('.card').remove();
+                            } else {
+                                bootbox.alert({
+                                    size: "small",
+                                    title: "Ошибка удаления",
+                                    message: "На эту запись ссылается другая запись. Для продолжения удалите ссылающуюся запись.",
+                                });
+                            }
+                        }
+                    });
                 }
             },
         }

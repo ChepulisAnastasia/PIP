@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BooksLibrary.Models;
 using PagedList;
@@ -23,15 +19,18 @@ namespace BooksLibrary.Controllers
         // GET: Users
         /*public ActionResult Index()
         {
-            return View(db.AspNetUsers.ToList());
+            return View();
         }*/
 
-        public ActionResult Index(int? page)
+        public ActionResult GetUsers()
         {
-            int pageSize = 5;
-            int pageNumber = (page ?? 1);
-            List<AspNetUser> user = db.AspNetUsers.ToList();
-            return View(user.ToPagedList(pageNumber, pageSize));
+            return Json(db.AspNetUsers.Select(item => new
+            {
+                id = item.Id,
+                email = item.Email,
+                userName = item.UserName,
+                role = item.AspNetRoles.FirstOrDefault().Name
+            }), JsonRequestBehavior.AllowGet);
         }
 
         // GET: Users/Details/5

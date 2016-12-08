@@ -117,11 +117,12 @@ namespace BooksLibrary.Controllers
 
         // POST: Readers/Delete/5
         [HttpPost]
-        public void DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Reader reader = db.Readers.Find(id);
             db.Readers.Remove(reader);
             db.SaveChanges();
+            return Json(new { status = "ok" });
         }
 
         protected override void Dispose(bool disposing)

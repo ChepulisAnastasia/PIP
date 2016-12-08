@@ -1,8 +1,4 @@
-﻿@model PagedList.IPagedList<BooksLibrary.Models.AspNetUser>
-@using PagedList.Mvc;
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
-
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
@@ -13,12 +9,12 @@
             <input type="text" class="form-control" aria-label="Text input with dropdown button">
             <div class="input-group-btn">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="filter-title">@Html.DisplayNameFor(model => model.FirstOrDefault().UserName)</span>
+                    <span class="filter-title">User name</span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li id="0"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().Email)</a></li>
-                    <li id="1"><a href="#">@Html.DisplayNameFor(model => model.FirstOrDefault().UserName)</a></li>
+                    <li id="0"><a href="#">Email</a></li>
+                    <li id="1"><a href="#">User name</a></li>
                 </ul>
             </div>
         </div>
@@ -26,33 +22,19 @@
 </div>
 
 <table class="table">
-    <tr>
-        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().Email) </th>
-        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().UserName) </th>
-        <th> @Html.DisplayNameFor(model => model.FirstOrDefault().AspNetRoles.First().Name) </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr class="card" id="@item.Id">
-        <td> @Html.DisplayFor(modelItem => item.Email) </td>
-        <td> @Html.DisplayFor(modelItem => item.UserName) </td>
-        <td> @Html.DisplayFor(modelItem => item.AspNetRoles.First().Name)
-        </td>
-        <td class="actions">
-            <a href="/Users/Edit/@item.Id" class="btn-icon-edit"><i class="fa fa-edit fa-lg"></i></a>
-            <a href="/Users/Details/@item.Id" class="btn-icon-details"><i class="fa fa-info fa-lg"></i></a>
-            <div class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></div>
-        </td>
-    </tr>
-}
+    <thead>
+        <tr>
+            <th> Email </th>
+            <th> User name </th>
+            <th> Role </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
 
 </table>
-<div class="page">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-    <hr />
-</div>
 
 <script>
     var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';
 </script>
+<script src="~/Scripts/Users.js"></script>

@@ -106,19 +106,19 @@ namespace BooksLibrary.Controllers
         // POST: Books/Delete/5
         [HttpPost]
         [Authorize(Roles = "Manager")]
-        public void DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string id)
         {
             try
             {
                 Book book = db.Books.Find(id);
                 db.Books.Remove(book);
                 db.SaveChanges();
+                return Json(new {status = "ok"});
             }
             catch (Exception e)
             {
                 throw new Exception("403");
             }
-            
         }
 
         protected override void Dispose(bool disposing)

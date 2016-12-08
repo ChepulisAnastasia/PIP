@@ -106,11 +106,12 @@ namespace BooksLibrary.Controllers
 
         // POST: Instances/Delete/5
         [HttpPost]
-        public void DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Instance instance = db.Instances.Find(id);
             db.Instances.Remove(instance);
             db.SaveChanges();
+            return Json(new { status = "ok" });
         }
 
         protected override void Dispose(bool disposing)

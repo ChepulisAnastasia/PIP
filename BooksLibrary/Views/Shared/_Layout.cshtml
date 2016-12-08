@@ -43,17 +43,17 @@
                 </div>
             </div>
         </div>
+        @Scripts.Render("~/bundles/jquery")
         <div class="container body-content">
             @RenderBody()
             @*<hr />
             <footer></footer>*@
         </div>
 
-        @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
-        <script src="~/Scripts/BooksFilter.js"></script>
-        <script src="~/Scripts/bootbox.min.js"></script>
+        <script src="~/Scripts/Books/BooksFilter.js"></script>
+        <script src="~/Scripts/ExternalLibraries/bootbox.min.js"></script>
         <script src="~/Scripts/DeleteItem.js"></script>
 </body>
 </html>
