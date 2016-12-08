@@ -40,6 +40,7 @@
 	background: rgba(48, 21, 21, 0.7);
     box-shadow: 0 -5px 10px rgba(48, 21, 21, 0.7);
 	padding: 6px;
+    text-align: justify;
 }
 
 .info .name {
@@ -68,3 +69,37 @@
 	width: 100%;
 	height: 30px;
 }
+
+.actions {
+    text-align: center;
+    margin-top: 16px;
+}
+
+
+.author:before {
+    content: "Автор: ";
+}
+
+.isbn:before {
+    content: "ISBN: ";
+}
+
+.publication_type:before {
+    content: "Вид издания: ";
+}
+
+.place_publication:before {
+    content: "Место издания: ";
+}
+.publishing:before {
+    content: "Издательство: ";
+}
+
+.year:before {
+    content: "Год: ";
+}
+
+.price:before {
+    content: "Цена: ";
+}
+

@@ -1,8 +1,8 @@
-﻿var filteredColumn = 1;
-var rows = [];
+﻿var filteredColumnId = 'name';
+var items = [];
 
 $(document).ready(function() {
-    rows = $(".table tr:not(:first-child)");
+    items = $(".card");
 });
 
 /**
@@ -11,12 +11,12 @@ $(document).ready(function() {
 $(".books-filter .dropdown-menu li").click(function () {
     var item = $(this);
     item.parents(".input-group-btn").find(".filter-title").text(item.text());
-    filteredColumn = +item.attr("id");
+    filteredColumn = item.attr("id");
 
     var input = $(".books-filter input");
     input.val("");
     input.focus();
-    rows.each(function () {
+    items.each(function () {
         $(this).show();
     });
 });
@@ -27,11 +27,13 @@ $(".books-filter .dropdown-menu li").click(function () {
 $(".books-filter input").on("input", function (event) {
     var inputText = $(this).val();
 
-    rows.each(function () {
-        if (this.cells[filteredColumn].innerText.toLowerCase().indexOf(inputText.toLowerCase()) < 0) {
-            $(this).hide();
+    items.each(function () {
+        var item = $(this);
+        var q = item.find('.' + filteredColumnId).text();
+        if (item.find('.' + filteredColumnId).text().toLowerCase().indexOf(inputText.toLowerCase()) < 0) {
+            item.hide();
         } else {
-            $(this).show();
+            item.show();
         } 
     });
 });
