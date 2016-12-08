@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="ISBN" />
           </Key>
-          <Property Name="ISBN" Type="nchar" MaxLength="13" Nullable="false" />
+          <Property Name="ISBN" Type="nchar" MaxLength="8" Nullable="false" />
           <Property Name="author" Type="nchar" MaxLength="40" />
           <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
           <Property Name="publication_type" Type="nchar" MaxLength="50" />
@@ -18,9 +18,9 @@
           <Property Name="language" Type="nchar" MaxLength="30" />
           <Property Name="translator" Type="nchar" MaxLength="40" />
           <Property Name="place_publication" Type="nchar" MaxLength="20" />
-          <Property Name="publishing" Type="nchar" MaxLength="6" />
+          <Property Name="publishing" Type="nchar" MaxLength="40" />
           <Property Name="year" Type="int" />
-          <Property Name="number" Type="smallint" Nullable="false" />
+          <Property Name="number" Type="smallint" />
           <Property Name="price" Type="money" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
@@ -30,7 +30,7 @@
             <PropertyRef Name="ISBN" />
             <PropertyRef Name="knowledge_id" />
           </Key>
-          <Property Name="ISBN" Type="nchar" MaxLength="13" Nullable="false" />
+          <Property Name="ISBN" Type="nchar" MaxLength="8" Nullable="false" />
           <Property Name="knowledge_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Extradition">
@@ -52,14 +52,14 @@
           <Property Name="rack" Type="smallint" Nullable="false" />
           <Property Name="shelf" Type="smallint" Nullable="false" />
           <Property Name="existence" Type="nchar" MaxLength="3" />
-          <Property Name="ISBN" Type="nchar" MaxLength="13" Nullable="false" />
+          <Property Name="ISBN" Type="nchar" MaxLength="8" Nullable="false" />
         </EntityType>
         <EntityType Name="Knowledge">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="knowledge" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="knowledge" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Readers">
           <Key>
@@ -73,7 +73,22 @@
           <Property Name="address" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="phone" Type="varchar" MaxLength="13" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Catalogs__ISBN__628FA481">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "LibraryDatabase.dbo.Debtors" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Debtors">
+          <Key>
+            <PropertyRef Name="last_name" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="middle_name" />
+            <PropertyRef Name="phone" />
+          </Key>
+          <Property Name="last_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="middle_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Количество дней задержки" Type="int" />
+        </EntityType>
+        <Association Name="FK__Catalogs__ISBN__114A936A">
           <End Role="Books" Type="Self.Books" Multiplicity="1" />
           <End Role="Catalogs" Type="Self.Catalogs" Multiplicity="*" />
           <ReferentialConstraint>
@@ -121,7 +136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Instances__ISBN__6A30C649">
+        <Association Name="FK__Instances__ISBN__123EB7A3">
           <End Role="Books" Type="Self.Books" Multiplicity="1" />
           <End Role="Instances" Type="Self.Instances" Multiplicity="*" />
           <ReferentialConstraint>
@@ -130,6 +145,30 @@
             </Principal>
             <Dependent Role="Instances">
               <PropertyRef Name="ISBN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_Knowledge">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="Catalogs" Type="Self.Catalogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="ISBN" />
+            </Principal>
+            <Dependent Role="Catalogs">
+              <PropertyRef Name="ISBN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Catalogs_Knowledge">
+          <End Role="Knowledge" Type="Self.Knowledge" Multiplicity="1" />
+          <End Role="Catalogs" Type="Self.Catalogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Knowledge">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Catalogs">
+              <PropertyRef Name="knowledge_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -145,7 +184,16 @@
     [Catalogs].[knowledge_id] AS [knowledge_id]
     FROM [dbo].[Catalogs] AS [Catalogs]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__Catalogs__ISBN__628FA481" Association="Self.FK__Catalogs__ISBN__628FA481">
+          <EntitySet Name="Debtors" EntityType="Self.Debtors" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Debtors].[last_name] AS [last_name], 
+    [Debtors].[name] AS [name], 
+    [Debtors].[middle_name] AS [middle_name], 
+    [Debtors].[phone] AS [phone], 
+    [Debtors].[Количество дней задержки] AS [Количество дней задержки]
+    FROM [dbo].[Debtors] AS [Debtors]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Catalogs__ISBN__114A936A" Association="Self.FK__Catalogs__ISBN__114A936A">
             <End Role="Books" EntitySet="Books" />
             <End Role="Catalogs" EntitySet="Catalogs" />
           </AssociationSet>
@@ -161,9 +209,17 @@
             <End Role="Readers" EntitySet="Readers" />
             <End Role="Extradition" EntitySet="Extradition" />
           </AssociationSet>
-          <AssociationSet Name="FK__Instances__ISBN__6A30C649" Association="Self.FK__Instances__ISBN__6A30C649">
+          <AssociationSet Name="FK__Instances__ISBN__123EB7A3" Association="Self.FK__Instances__ISBN__123EB7A3">
             <End Role="Books" EntitySet="Books" />
             <End Role="Instances" EntitySet="Instances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_Knowledge" Association="Self.FK_Books_Knowledge">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Catalogs" EntitySet="Catalogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Catalogs_Knowledge" Association="Self.FK_Catalogs_Knowledge">
+            <End Role="Knowledge" EntitySet="Knowledge" />
+            <End Role="Catalogs" EntitySet="Catalogs" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -174,7 +230,7 @@
           <Key>
             <PropertyRef Name="ISBN" />
           </Key>
-          <Property Name="ISBN" Type="String" MaxLength="13" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ISBN" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="author" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="publication_type" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
@@ -183,9 +239,9 @@
           <Property Name="language" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="translator" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
           <Property Name="place_publication" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="publishing" Type="String" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="publishing" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
           <Property Name="year" Type="Int32" />
-          <Property Name="number" Type="Int16" Nullable="false" />
+          <Property Name="number" Type="Int16" />
           <Property Name="price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="Instances" Relationship="Self.FK__Instances__ISBN__6A30C649" FromRole="Books" ToRole="Instances" />
           <NavigationProperty Name="Knowledges" Relationship="Self.Catalogs" FromRole="Books" ToRole="Knowledge" />
@@ -211,7 +267,7 @@
           <Property Name="rack" Type="Int16" Nullable="false" />
           <Property Name="shelf" Type="Int16" Nullable="false" />
           <Property Name="existence" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
-          <Property Name="ISBN" Type="String" MaxLength="13" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ISBN" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Book" Relationship="Self.FK__Instances__ISBN__6A30C649" FromRole="Instances" ToRole="Books" />
           <NavigationProperty Name="Extraditions" Relationship="Self.FK__Extraditi__insta__70DDC3D8" FromRole="Instances" ToRole="Extradition" />
         </EntityType>
@@ -220,7 +276,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="knowledge1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="knowledge1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Books" Relationship="Self.Catalogs" FromRole="Knowledge" ToRole="Books" />
         </EntityType>
         <EntityType Name="Reader">
@@ -298,7 +354,21 @@
             <End Role="Books" EntitySet="Books" />
             <End Role="Knowledge" EntitySet="Knowledges" />
           </AssociationSet>
+          <EntitySet Name="Debtors" EntityType="LibraryDatabaseModel.Debtor" />
         </EntityContainer>
+        <EntityType Name="Debtor">
+          <Key>
+            <PropertyRef Name="last_name" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="middle_name" />
+            <PropertyRef Name="phone" />
+          </Key>
+          <Property Name="last_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="middle_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="count_days" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -376,6 +446,17 @@
               <ScalarProperty Name="id" ColumnName="knowledge_id" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Debtors">
+            <EntityTypeMapping TypeName="LibraryDatabaseModel.Debtor">
+              <MappingFragment StoreEntitySet="Debtors">
+                <ScalarProperty Name="count_days" ColumnName="Количество дней задержки" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
