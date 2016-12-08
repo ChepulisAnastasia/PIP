@@ -17,10 +17,10 @@ namespace BooksLibrary.Controllers
         private DefaultConnectionEntities db = new DefaultConnectionEntities();
 
         // GET: Users
-        /*public ActionResult Index()
+        public ActionResult Index()
         {
             return View();
-        }*/
+        }
 
         public ActionResult GetUsers()
         {
