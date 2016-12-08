@@ -327,7 +327,7 @@
     </Content>
     <Content Include="Scripts\ExternalLibraries\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ExternalLibraries\ai.0.22.19-build00125.min.js" />
-    <Content Include="Scripts\Books\Books.js" />
+    <Content Include="Scripts\Users.js" />
     <Content Include="Scripts\Books\BooksFilter.js" />
     <Content Include="Scripts\ExternalLibraries\bootbox.min.js" />
     <Content Include="Scripts\ExternalLibraries\bootstrap.js" />
@@ -384,7 +384,7 @@
     <Content Include="Content\font-awesome-4.7.0\scss\_variables.scss" />
     <Content Include="App_Data\LibraryDatabase.bacpac" />
     <None Include="Scripts\ExternalLibraries\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\ExternalLibraries\DeleteItem.js" />
+    <Content Include="Scripts\DeleteItem.js" />
     <Content Include="Scripts\ExternalLibraries\jquery-1.10.2.js" />
     <Content Include="Scripts\ExternalLibraries\jquery-1.10.2.min.js" />
     <None Include="Scripts\ExternalLibraries\jquery.validate-vsdoc.js" />

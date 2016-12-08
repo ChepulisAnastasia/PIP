@@ -104,11 +104,12 @@ namespace BooksLibrary.Controllers
 
         // POST: Extraditions/Delete/5
         [HttpPost]
-        public void DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Extradition extradition = db.Extraditions.Find(id);
             db.Extraditions.Remove(extradition);
             db.SaveChanges();
+            return Json(new { status = "ok" });
         }
 
         protected override void Dispose(bool disposing)

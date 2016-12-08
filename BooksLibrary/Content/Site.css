@@ -133,13 +133,14 @@ tr[id]:hover {
 
 
 .actions {
-    width: 100px;
+    width: 120px;
 }
 
 .actions > * {
     display: inline-block;
     width: 30px;
-    height: 30px;
+    /*height: 30px;*/
     text-align: center;
-    padding-top: 6px;
+    /*padding-top: 6px;*/
+    margin: 0;
 }

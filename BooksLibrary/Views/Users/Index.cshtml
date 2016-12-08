@@ -24,14 +24,24 @@
 </div>
 
 <table class="table">
-    <tr>
+    @*<tr>
         <th> @Html.DisplayNameFor(model => model.Email) </th>
         <th> @Html.DisplayNameFor(model => model.UserName) </th>
         <th> @Html.DisplayNameFor(model => model.AspNetRoles.First().Name) </th>
         <th></th>
-    </tr>
+    </tr>*@
+    <thead>
+        <tr>
+            <th> Email </th>
+            <th> User name </th>
+            <th> Role </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+    
 
-@foreach (var item in Model) {
+    @*@foreach (var item in Model) {
     <tr class="card" id="@item.Id">
         <td> @Html.DisplayFor(modelItem => item.Email) </td>
         <td> @Html.DisplayFor(modelItem => item.UserName) </td>
@@ -43,10 +53,11 @@
             <div class="btn-icon-delete"><i class="fa fa-times fa-lg"></i></div>
         </td>
     </tr>
-}
+}*@
 
 </table>
 
 <script>
     var deleteUrl = '@Url.Action("DeleteConfirmed", (string) PageData["Controller"])';
 </script>
+<script src="~/Scripts/Users.js"></script>

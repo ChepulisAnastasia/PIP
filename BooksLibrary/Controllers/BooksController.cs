@@ -22,17 +22,12 @@ namespace BooksLibrary.Controllers
             return View(db.Books.ToList());
         }*/
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult GetBooks(int? page)
+        public ActionResult Index(int? page)
         {
             int pageSize = 5;
             int pageNumber = (page ?? 1);
             List<Book> book = db.Books.ToList();
-            return Json(book.ToPagedList(pageNumber, pageSize), JsonRequestBehavior.AllowGet);
+            return View(book.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Books/Details/5
@@ -111,19 +106,19 @@ namespace BooksLibrary.Controllers
         // POST: Books/Delete/5
         [HttpPost]
         [Authorize(Roles = "Manager")]
-        public void DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string id)
         {
             try
             {
                 Book book = db.Books.Find(id);
                 db.Books.Remove(book);
                 db.SaveChanges();
+                return Json(new {status = "ok"});
             }
             catch (Exception e)
             {
                 throw new Exception("403");
             }
-            
         }
 
         protected override void Dispose(bool disposing)

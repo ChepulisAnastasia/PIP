@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using BooksLibrary.Models;
 
@@ -21,7 +17,26 @@ namespace BooksLibrary.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.AspNetUsers.ToList());
+            return View();
+        }
+
+        public ActionResult GetUsers()
+        {
+            //var data = db.AspNetUsers.ToList();
+            //var resultData = db.AspNetUsers.Select(item => new
+            //{
+            //    id = item.Id,
+            //    email = item.Email,
+            //    userName = item.UserName,
+            //    role = item.AspNetRoles.First().Name
+            //});
+            return Json(db.AspNetUsers.Select(item => new
+            {
+                id = item.Id,
+                email = item.Email,
+                userName = item.UserName,
+                role = item.AspNetRoles.FirstOrDefault().Name
+            }), JsonRequestBehavior.AllowGet);
         }
 
         // GET: Users/Details/5
